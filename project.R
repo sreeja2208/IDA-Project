@@ -23,3 +23,9 @@ mydata=subset(mydata,select=-c(G3))
 dim(mydata)
 
 chisq.mat=chisq.test(mydata3)
+
+
+library(ggcorrplot)
+model.matrix(~0+.,mydata3) %>% 
+  cor(use="pairwise.complete.obs") %>% 
+    ggcorrplot(show.diag = T, type="lower", lab=TRUE, lab_size=2)
